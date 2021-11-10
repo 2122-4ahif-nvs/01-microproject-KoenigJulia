@@ -10,8 +10,6 @@ ifndef::imagesdir[:imagesdir: images]
 
 ifdef::backend-html5[]
 
-link:plantuml/cld.puml[]
-
 == Erklärung der Anwendung
 Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine Trainingseinheit zu buchen.
 
