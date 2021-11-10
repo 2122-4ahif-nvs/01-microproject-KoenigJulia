@@ -47,8 +47,5 @@ Member --> TrainigsSession
 TrainigsSession -l-> TennisCourt
 Member --> Match
 Match -r-> TennisCourt
-
-
-
 @enduml
 ----
