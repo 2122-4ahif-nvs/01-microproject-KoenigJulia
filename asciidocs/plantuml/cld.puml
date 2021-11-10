@@ -1,0 +1,10 @@
+@startuml
+
+class Member{
+    String: name
+}
+
+class Match{
+}
+
+@enduml

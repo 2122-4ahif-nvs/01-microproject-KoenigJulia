@@ -8,14 +8,47 @@ ifndef::imagesdir[:imagesdir: images]
 :sectnums:    // Nummerierung der Überschriften / section numbering
 :toc: left
 
-//Need this blank line after ifdef, don't know why...
 ifdef::backend-html5[]
 
-// print the toc here (not at the default position)
-//toc::[]
+link:plantuml/cld.puml[]
 
-== Header 1
+== Erklärung der Anwendung
+Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine Trainingseinheit zu buchen.
+
+[plantuml]
+----
+@startuml
+
+class Member{
+    - String: name
+    - String: email
+    - String: phoneNumber
+    - boolean: isTrainer
+}
+
+class Match{
+    - Member: memberOne
+    - Member: memberTwo
+    - TennisCourt: court
+}
+
+class TrainigsSession{
+    - Member: member
+    - Trainer: trainer
+    - TennisCourt: court
+}
+
+class TennisCourt{
+    - int: id
+    - boolean: isReservated
+}
+
+Member --> TrainigsSession
+TrainigsSession -l-> TennisCourt
+Member --> Match
+Match -r-> TennisCourt
 
 
-=== Header 2
 
+@enduml
+----
