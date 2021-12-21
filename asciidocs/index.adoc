@@ -1,6 +1,6 @@
-= My Project
-firstname lastname
-1.0.0, yyyy-mm-dd: Some notes
+= Tennisverein
+Julia König
+1.0.0, 2021-11-10:
 ifndef::imagesdir[:imagesdir: images]
 //:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
 :sourcedir: ../src/main/java
@@ -11,7 +11,7 @@ ifndef::imagesdir[:imagesdir: images]
 ifdef::backend-html5[]
 
 == Erklärung der Anwendung
-Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine Trainingseinheit zu buchen.
+Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine Trainingseinheit buchen können.
 
 [plantuml]
 ----
@@ -41,9 +41,9 @@ class TennisCourt{
     - boolean: isReservated
 }
 
-Member --> TrainigsSession
-TrainigsSession -l-> TennisCourt
-Member --> Match
-Match -r-> TennisCourt
+Member "1" <-- "n" TrainigsSession
+TrainigsSession "n" -l-> "1" TennisCourt
+Member "1" <-- "n" Match
+Match "n" -r-> "1" TennisCourt
 @enduml
 ----

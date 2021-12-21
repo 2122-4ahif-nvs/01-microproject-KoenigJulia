@@ -1,25 +1,37 @@
 package at.htl.tennis.entity;
 
-import com.fasterxml.jackson.databind.deser.std.StringArrayDeserializer;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.smallrye.context.api.CurrentThreadContext;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@NamedQueries(
+        @NamedQuery(
+        name = "Member.findMemberByMember",
+        query = "select m from Member m where m.isTrainer = :TRAINER and m.mail = :MAIL " +
+                "and m.name = :NAME and m.phoneNumber = :PHONENUMBER"
+        )
+)
 @Entity
-public class Member {
+@Table(name = "TC_MEMBER")
+public class Member extends PanacheEntityBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
-    private String name;
+    @Column(name = "M_NAME")
+    public String name;
 
-    private String mail;
+    @Column(name = "M_MAIL")
+    public String mail;
 
-    private String phoneNumber;
+    @Column(name = "M_PHONENUMBER")
+    public String phoneNumber;
 
-    private Boolean isTrainer;
+    @Column(name = "M_TRAINER")
+    public Boolean isTrainer;
 
     //region constructors
     public Member(String name, String mail, String phoneNumber, Boolean isTrainer) {
@@ -33,48 +45,13 @@ public class Member {
     }
     //endregions
 
-    //region getter and setter
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    //endregion
-
     //region toString
     @Override
     public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mail='" + mail + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+        return "id=" + id +
+                ", name= " + name + '\'' +
+                ", mail= " + mail + '\'' +
+                ", phoneNumber= " + phoneNumber + '\'' +
                 '}';
     }
     //endregion
