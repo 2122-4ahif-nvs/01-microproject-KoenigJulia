@@ -1,0 +1,11 @@
+query allTenniscourts{
+    getAllTenniscourts{
+        courtId
+    }
+}
+
+query getFirstTenniscourt{
+    getTenniscourtByTenniscourtId(courtId: 1){
+        courtId
+    }
+}

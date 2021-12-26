@@ -5,12 +5,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.smallrye.context.api.CurrentThreadContext;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NamedQueries(
         @NamedQuery(
         name = "Member.findMemberByMember",
         query = "select m from Member m where m.isTrainer = :TRAINER and m.mail = :MAIL " +
-                "and m.name = :NAME and m.phoneNumber = :PHONENUMBER"
+                "and m.firstname = :FIRSTNAME and m.lastname = :LASTNAME and m.phoneNumber = :PHONENUMBER"
         )
 )
 @Entity
@@ -21,24 +22,39 @@ public class Member extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name = "M_NAME")
-    public String name;
+    @Column(name = "ME_FIRSTNAME")
+    public String firstname;
 
-    @Column(name = "M_MAIL")
+    @Column(name = "ME_LASTNAME")
+    public String lastname;
+
+    @Column(name = "ME_MAIL")
     public String mail;
 
-    @Column(name = "M_PHONENUMBER")
+    @Column(name = "ME_PHONENUMBER")
     public String phoneNumber;
 
-    @Column(name = "M_TRAINER")
+    @Column(name = "ME_TRAINER")
     public Boolean isTrainer;
 
+    @ManyToOne
+    @JoinColumn(name = "ME_TS_ID")
+    public Trainingssession trainingssession;
+
+    @ManyToOne
+    @JoinColumn(name = "ME_MA_ID")
+    public Match match;
+
     //region constructors
-    public Member(String name, String mail, String phoneNumber, Boolean isTrainer) {
-        this.name = name;
+
+    public Member(String firstname, String lastname, String mail, String phoneNumber, Boolean isTrainer, Trainingssession trainingssession, Match match) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
         this.isTrainer = isTrainer;
+        this.trainingssession = trainingssession;
+        this.match = match;
     }
 
     public Member() {
@@ -46,13 +62,20 @@ public class Member extends PanacheEntityBase {
     //endregions
 
     //region toString
+
     @Override
     public String toString() {
-        return "id=" + id +
-                ", name= " + name + '\'' +
-                ", mail= " + mail + '\'' +
-                ", phoneNumber= " + phoneNumber + '\'' +
+        return "Member{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", mail='" + mail + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", isTrainer=" + isTrainer +
+                ", trainingssession=" + trainingssession +
+                ", match=" + match +
                 '}';
     }
+
     //endregion
 }

@@ -1,0 +1,34 @@
+= Tennisverein
+Julia König
+1.0.0:
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+== GraphQL
+
+link:../backend/src/main/java/at/htl/tennis/boundary/TenniscourtResource.java[GraphQLQueriesImplementation]
+
+link:../backend/graphql-queries/queries.graphql[GraphQLQueries]
+
+link:../backend/src/main/java/at/htl/tennis/control/TenniscourtService.java[MethodImplementationForQueries]
+
+.Warum benötige ich GraphQL?
+GraphQL bietet die Möglichkeiten, genau das zu fragen, was man benötigt und nicht mehr.
+Im Allgemeinen ist GraphQL eine Abfragesprache für APIs.
+
+.Anwendung im Projekt
+Ich habe GraphQL dazu verwendet um alle Tennisplätze, die in der Datenbank gespeichert sind auszugeben.
+
+.Alternativen
+* Swagger
+* REST API
+
+== Validation
+
+== Qute

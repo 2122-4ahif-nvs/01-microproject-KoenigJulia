@@ -1,4 +1,4 @@
-docker run --rm=true \
+./docker run --rm=true \
            --name postgres-payment \
            -e POSTGRES_USER=app \
            -e POSTGRES_PASSWORD=app \

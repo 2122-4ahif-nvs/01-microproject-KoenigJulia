@@ -1,7 +1,7 @@
 package at.htl.tennis.control;
 
-import at.htl.tennis.entity.Match;
 import at.htl.tennis.entity.Member;
+import at.htl.tennis.entity.Tenniscourt;
 import at.htl.tennis.entity.Trainingssession;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
@@ -13,22 +13,22 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 @ApplicationScoped
-public class MatchRepository implements PanacheRepository<Match> {
+public class TenniscourtRepository implements PanacheRepository<Tenniscourt> {
+
     @Inject
     EntityManager em;
 
     @Transactional
-    public Match save(Match match) {
-        Match match1 = findMatchByMatch(match);
-        if(match1 != null)
-            return match1;
-        return em.merge(match);
+    public Tenniscourt save(Tenniscourt court) {
+        Tenniscourt tenniscourt = findTenniscourtByTenniscourt(court);
+        if(tenniscourt != null)
+            return tenniscourt;
+        return em.merge(court);
     }
 
-    private Match findMatchByMatch(Match match) {
-        TypedQuery<Match> query = em.createNamedQuery("Match.findMatchByMatch",Match.class)
-                .setParameter("PLAYTIME", match.playTime)
-                .setParameter("TENNISCOURT", match.tenniscourt);
+    private Tenniscourt findTenniscourtByTenniscourt(Tenniscourt court) {
+        TypedQuery<Tenniscourt> query = em.createNamedQuery("Tenniscourt.findTenniscourtByTenniscourt",Tenniscourt.class)
+                .setParameter("COURTID", court.courtId);
         try {
             return query.getSingleResult();
         }catch (NoResultException ex){
