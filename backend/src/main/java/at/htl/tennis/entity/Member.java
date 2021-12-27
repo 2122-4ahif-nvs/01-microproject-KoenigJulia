@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.smallrye.context.api.CurrentThreadContext;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @NamedQueries(
@@ -22,12 +23,15 @@ public class Member extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @NotBlank(message = "Firstname may not be blank")
     @Column(name = "ME_FIRSTNAME")
     public String firstname;
 
+    @NotBlank(message = "Lastname may not be blank")
     @Column(name = "ME_LASTNAME")
     public String lastname;
 
+    @NotBlank(message = "Email may not be blank")
     @Column(name = "ME_MAIL")
     public String mail;
 
@@ -58,6 +62,12 @@ public class Member extends PanacheEntityBase {
     }
 
     public Member() {
+    }
+
+    public Member(String firstname, String lastname, String mail) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.mail = mail;
     }
     //endregions
 
