@@ -9,6 +9,17 @@ Content-Type: application/json
 
 ###
 
+POST localhost:8080/member/service-method-validation
+Content-Type: application/json
+
+{
+  "firstname": "Herbert",
+  "lastname": "",
+  "mail": "herbert@wurm.mail"
+}
+
+###
+
 POST localhost:8080/member/manual-validation
 Content-Type: application/json
 

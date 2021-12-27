@@ -31,4 +31,21 @@ Ich habe GraphQL dazu verwendet um alle Tennisplätze, die in der Datenbank gesp
 
 == Validation
 
+link:../backend/src/main/java/at/htl/tennis/control/MemberService.java[ServiceValidation]
+
+link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[ValidationMethods]
+
+link:../backend/src/main/java/at/htl/tennis/entity/Member.java[ValidationAnnotation]
+
+.Warum benötige ich Validierung?
+Validierung bietet die Möglichkeit die Eingabe es Benutzers "einzuschränken".
+Einschränken in dem Kontext, dass der Benutzer wie in meinem Beispiel einen Vornamen eingeben muss,
+ansonsten wird eine Fehlermeldung ausgegeben.
+Validierung kann frühzeitig prüfen, ob die geforderten Eingaben des Programmiers bzw.
+Kunden vom Benutzer richtig durchgeführt wurden.
+
+.Anwendung im Projekt
+Ich habe die Validierung in der Klasse Member angewendet, da es dort nötig ist, dass von einem neuen
+Mitglied zumindest der Vorname, Nachname und die E-Mail bekannt ist.
+
 == Qute

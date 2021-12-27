@@ -1,12 +1,9 @@
 package at.htl.tennis.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.smallrye.context.api.CurrentThreadContext;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @NamedQueries(
         @NamedQuery(
