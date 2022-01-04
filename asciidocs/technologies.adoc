@@ -67,3 +67,4 @@ und Telefonnummer "finden". Dieser wird dann mit dem memberTemplate.html grafisc
 wenn man den GET-Request in einem Browser ausführt.
 
 == GRPC
+
