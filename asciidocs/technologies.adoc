@@ -37,6 +37,8 @@ link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[Validat
 
 link:../backend/src/main/java/at/htl/tennis/entity/Member.java[ValidationAnnotation]
 
+link:../backend/http-requests/http-requests.http[tryValidationRequests]
+
 .Warum benötige ich Validierung?
 Validierung bietet die Möglichkeit die Eingabe es Benutzers "einzuschränken".
 Einschränken in dem Kontext, dass der Benutzer wie in meinem Beispiel einen Vornamen eingeben muss,
