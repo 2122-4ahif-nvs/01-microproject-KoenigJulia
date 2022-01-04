@@ -1,6 +1,5 @@
 = Tennisverein
 Julia König
-1.0.0:
 ifndef::imagesdir[:imagesdir: images]
 //:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
 :sourcedir: ../src/main/java
@@ -12,13 +11,13 @@ ifdef::backend-html5[]
 
 == GraphQL
 
-link:../backend/src/main/java/at/htl/tennis/boundary/TenniscourtResource.java[GraphQLQueriesImplementation]
+link:../backend/src/main/java/at/htl/tennis/boundary/TenniscourtResource.java[GraphQL-queries implementation]
 
-link:../backend/graphql-queries/queries.graphql[GraphQLQueries]
+link:../backend/graphql-queries/queries.graphql[GraphQL-queries]
 
-link:../backend/src/main/java/at/htl/tennis/control/TenniscourtService.java[MethodImplementationForQueries]
+link:../backend/src/main/java/at/htl/tennis/control/TenniscourtService.java[Method implementation for queries]
 
-.Warum benötige ich GraphQL?
+.Wofür benötigt man GraphQL?
 GraphQL bietet die Möglichkeiten, genau das zu fragen, was man benötigt und nicht mehr.
 Im Allgemeinen ist GraphQL eine Abfragesprache für APIs.
 
@@ -37,9 +36,9 @@ link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[Validat
 
 link:../backend/src/main/java/at/htl/tennis/entity/Member.java[ValidationAnnotation]
 
-link:../backend/http-requests/http-requests.http[tryValidationRequests]
+link:../backend/http-requests/http-requests.http[try validation requests]
 
-.Warum benötige ich Validierung?
+.Wofür benötigt man Validierung?
 Validierung bietet die Möglichkeit die Eingabe es Benutzers "einzuschränken".
 Einschränken in dem Kontext, dass der Benutzer wie in meinem Beispiel einen Vornamen eingeben muss,
 ansonsten wird eine Fehlermeldung ausgegeben.
@@ -50,4 +49,21 @@ Kunden vom Benutzer richtig durchgeführt wurden.
 Ich habe die Validierung in der Klasse Member angewendet, da es dort nötig ist, dass von einem neuen
 Mitglied zumindest der Vorname, Nachname und die E-Mail bekannt ist.
 
-== Qute
+== Qute Templating Engine
+
+link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[getMemberMethod]
+
+link:../backend/src/main/resources/templates/MemberResource/memberTemplate.html[Html-Page to print member]
+
+link:../backend/http-requests/http-requests.http[Try last GET to test part of qute]
+
+.Wofür benötigt man Qute?
+Qute ist eine Templating-Engine, die speziell für die Anforderungen von Quarkus entwickelt wurde.
+Die Verwendung von Reflektion wird minimiert, um die Größe nativer Bilder zu reduzieren.
+
+.Anwendung im Projekt
+Qute wurde bei der Member-Klasse angewendet. Mit einem GET-Request kann man einen Member durch Vorname, Nachname, Mail
+und Telefonnummer "finden". Dieser wird dann mit dem memberTemplate.html grafisch in einem Browser abgebildet,
+wenn man den GET-Request in einem Browser ausführt.
+
+== GRPC

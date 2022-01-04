@@ -1,6 +1,5 @@
 = Tennisverein
 Julia König
-1.0.0:
 ifndef::imagesdir[:imagesdir: images]
 //:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
 :sourcedir: ../src/main/java
@@ -11,7 +10,7 @@ ifndef::imagesdir[:imagesdir: images]
 ifdef::backend-html5[]
 
 == Erklärung der Anwendung
-Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine Trainingseinheit buchen können.
+Ein Tennisverein mit Mitgliedern, die einen Tennisplatz für ein Match buchen können.
 
 [plantuml]
 ----
