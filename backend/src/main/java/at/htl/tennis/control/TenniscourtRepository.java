@@ -1,8 +1,6 @@
 package at.htl.tennis.control;
 
-import at.htl.tennis.entity.Member;
 import at.htl.tennis.entity.Tenniscourt;
-import at.htl.tennis.entity.Trainingssession;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -26,7 +24,7 @@ public class TenniscourtRepository implements PanacheRepository<Tenniscourt> {
         return em.merge(court);
     }
 
-    private Tenniscourt findTenniscourtByTenniscourt(Tenniscourt court) {
+    public Tenniscourt findTenniscourtByTenniscourt(Tenniscourt court) {
         TypedQuery<Tenniscourt> query = em.createNamedQuery("Tenniscourt.findTenniscourtByTenniscourt",Tenniscourt.class)
                 .setParameter("COURTID", court.courtId);
         try {

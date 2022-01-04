@@ -2,6 +2,9 @@ package at.htl.tennis.boundary;
 
 import at.htl.tennis.control.MemberService;
 import at.htl.tennis.entity.Member;
+import io.quarkus.qute.Location;
+import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -23,6 +26,22 @@ public class MemberResource {
 
     @Inject
     MemberService memberService;
+
+    @Inject @Location("MemberResource/memberTemplate.html")
+    Template memberTemplate;
+
+    @Path("/getMember")
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance get(
+            @QueryParam("fn") @DefaultValue("") String firstName,
+            @QueryParam("ln") @DefaultValue("") String lastName,
+            @QueryParam("m") @DefaultValue("") String mail,
+            @QueryParam("pn") @DefaultValue("") String phoneNumber
+    ) {
+        Member member = new Member(firstName, lastName, mail, phoneNumber);
+        return memberTemplate.data("member", memberService.getMemberByMember(member));
+    }
 
     @Path("/service-method-validation")
     @POST

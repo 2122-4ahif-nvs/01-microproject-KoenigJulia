@@ -18,34 +18,31 @@ Ein Tennisverein mit Mitglieder, die einen Tennisplatz für ein Match oder eine 
 @startuml
 
 class Member{
-    - String: firstname
-    - String: lastname
-    - String: email
-    - String: phonenumber
-    - boolean: isTrainer
-    - Match: match
-    - Trainigssession: trainingssession
+    - firstname: String
+    - lastname: String
+    - email: String
+    - phoneNumber: String
 }
 
 class Match{
-    - LocalDateTime: playtime
-    - TennisCourt: court
-}
-
-class Trainigssession{
-    - LocalDateTime: trainingstime
-    - TennisCourt: court
+    - startTime: LocalDateTime
+    - endTime: LocalDateTime
+    - court: Tenniscourt
 }
 
 class Tenniscourt{
-    - int: id
-    - int: courtId
+    - courtId: Integer
+    - isPlayable: boolean
 }
 
-Member "n" --> "1" Trainigssession
-Trainigssession "n" -l-> "1" Tenniscourt
-Member "n" --> "1" Match
+class MatchPlan{
+    -match: Match
+    -member: Member
+}
+
 Match "n" -r-> "1" Tenniscourt
+
+(Match, Member) .. MatchPlan
 @enduml
 ----
 

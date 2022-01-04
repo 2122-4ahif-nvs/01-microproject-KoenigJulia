@@ -1,8 +1,6 @@
 package at.htl.tennis.control;
 
 import at.htl.tennis.entity.Match;
-import at.htl.tennis.entity.Member;
-import at.htl.tennis.entity.Trainingssession;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -25,9 +23,10 @@ public class MatchRepository implements PanacheRepository<Match> {
         return em.merge(match);
     }
 
-    private Match findMatchByMatch(Match match) {
+    public Match findMatchByMatch(Match match) {
         TypedQuery<Match> query = em.createNamedQuery("Match.findMatchByMatch",Match.class)
-                .setParameter("PLAYTIME", match.playTime)
+                .setParameter("STARTTIME", match.startTime)
+                .setParameter("ENDTIME", match.endTime)
                 .setParameter("TENNISCOURT", match.tenniscourt);
         try {
             return query.getSingleResult();

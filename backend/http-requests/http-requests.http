@@ -39,3 +39,7 @@ Content-Type: application/json
   "lastname": "Wurm",
   "mail": ""
 }
+
+###
+
+GET http://localhost:8080/member/getMember?fn=Herbert&ln=Glas&m=herbert@mail.com&pn=089893444444

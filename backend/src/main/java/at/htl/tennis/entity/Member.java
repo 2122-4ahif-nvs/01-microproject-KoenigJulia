@@ -4,11 +4,12 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @NamedQueries(
         @NamedQuery(
         name = "Member.findMemberByMember",
-        query = "select m from Member m where m.isTrainer = :TRAINER and m.mail = :MAIL " +
+        query = "select m from Member m where m.mail = :MAIL " +
                 "and m.firstname = :FIRSTNAME and m.lastname = :LASTNAME and m.phoneNumber = :PHONENUMBER"
         )
 )
@@ -35,27 +36,16 @@ public class Member extends PanacheEntityBase {
     @Column(name = "ME_PHONENUMBER")
     public String phoneNumber;
 
-    @Column(name = "ME_TRAINER")
-    public Boolean isTrainer;
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<MatchPlan> matchPlans;
 
-    @ManyToOne
-    @JoinColumn(name = "ME_TS_ID")
-    public Trainingssession trainingssession;
-
-    @ManyToOne
-    @JoinColumn(name = "ME_MA_ID")
-    public Match match;
 
     //region constructors
-
-    public Member(String firstname, String lastname, String mail, String phoneNumber, Boolean isTrainer, Trainingssession trainingssession, Match match) {
+    public Member(String firstname, String lastname, String mail, String phoneNumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
-        this.isTrainer = isTrainer;
-        this.trainingssession = trainingssession;
-        this.match = match;
     }
 
     public Member() {
@@ -67,9 +57,7 @@ public class Member extends PanacheEntityBase {
         this.mail = mail;
     }
     //endregions
-
     //region toString
-
     @Override
     public String toString() {
         return "Member{" +
@@ -78,9 +66,6 @@ public class Member extends PanacheEntityBase {
                 ", lastname='" + lastname + '\'' +
                 ", mail='" + mail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", isTrainer=" + isTrainer +
-                ", trainingssession=" + trainingssession +
-                ", match=" + match +
                 '}';
     }
 

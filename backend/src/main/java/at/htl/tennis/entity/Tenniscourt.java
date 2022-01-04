@@ -19,4 +19,27 @@ public class Tenniscourt extends PanacheEntityBase {
 
     @Column(name = "TE_CourtID")
     public Integer courtId;
+
+    @Column(name = "TE_ISPLAYABLE")
+    public boolean isPlayable;
+
+    //region constructor
+    public Tenniscourt(Integer courtId, boolean isPlayable) {
+        this.courtId = courtId;
+        this.isPlayable = isPlayable;
+    }
+
+    public Tenniscourt() {
+    }
+    //endregion
+    //region toString
+    @Override
+    public String toString() {
+        return "Tenniscourt{" +
+                "id=" + id +
+                ", courtId=" + courtId +
+                ", isPlayable=" + isPlayable +
+                '}';
+    }
+    //endregion
 }

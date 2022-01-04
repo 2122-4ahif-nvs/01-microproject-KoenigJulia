@@ -12,6 +12,19 @@ public class MemberService {
     @Inject
     Validator validator;
 
+    @Inject
+    MemberRepository memberRepository;
+
+    //region constructor
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    //endregion
+
+    public Member getMemberByMember(Member member){
+        return memberRepository.findMemberByMember(member);
+    }
+
     public void validateMember(@Valid Member member){
         validator.validate(member);
     }

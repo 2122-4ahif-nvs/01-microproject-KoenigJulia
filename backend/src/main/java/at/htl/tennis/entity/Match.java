@@ -9,7 +9,7 @@ import java.util.List;
 @NamedQueries(
         @NamedQuery(
                 name = "Match.findMatchByMatch",
-                query = "select m from Match m where m.playTime = :PLAYTIME and m.tenniscourt = :TENNISCOURT "
+                query = "select m from Match m where m.startTime = :STARTTIME and m.endTime = :ENDTIME and m.tenniscourt = :TENNISCOURT "
         )
 )
 @Entity
@@ -23,6 +23,34 @@ public class Match extends PanacheEntityBase {
     @JoinColumn(name = "MA_TE_ID")
     public Tenniscourt tenniscourt;
 
-    @Column(name = "MA_PLAYTIME")
-    public LocalDateTime playTime;
+    @Column(name = "MA_STARTTIME")
+    public LocalDateTime startTime;
+
+    @Column(name = "MA_ENDTIME")
+    public LocalDateTime endTime;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<MatchPlan> matchPlans;
+
+    //region constructor
+    public Match(Tenniscourt tenniscourt, LocalDateTime startTime, LocalDateTime endTime) {
+        this.tenniscourt = tenniscourt;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Match() {
+    }
+    //endregion
+    //region toString
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", tenniscourt=" + tenniscourt +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
+    //endregion
 }
