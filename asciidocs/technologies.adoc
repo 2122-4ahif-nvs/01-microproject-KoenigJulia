@@ -68,3 +68,6 @@ wenn man den GET-Request in einem Browser ausführt.
 
 == GRPC
 
+.Wofür benötigt man GRPC?
+
+.Anwendung im Projekt
