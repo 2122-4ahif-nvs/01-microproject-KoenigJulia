@@ -17,5 +17,4 @@ public class HelloService implements Greeter {
                 HelloReply.newBuilder().setMessage("Hello " + request.getName()).build()
         );
     }
-
 }

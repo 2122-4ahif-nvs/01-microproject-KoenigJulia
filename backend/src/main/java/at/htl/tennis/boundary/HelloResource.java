@@ -13,12 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/hello")
+@Produces(MediaType.TEXT_PLAIN)
 public class HelloResource {
     @GrpcClient
     Greeter hello;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "hello";
     }
