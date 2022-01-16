@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @NamedQueries(
         @NamedQuery(
-                name = "Tenniscourt.findTenniscourtByTenniscourt",
+                name = "Tenniscourt.getTenniscourtByTenniscourt",
                 query = "select t from Tenniscourt t where t.courtId = :COURTID"
         )
 )

@@ -11,11 +11,11 @@ ifdef::backend-html5[]
 
 == GraphQL
 
-link:../backend/src/main/java/at/htl/tennis/boundary/TenniscourtResource.java[GraphQL-queries implementation]
+link:../backend/src/main/java/at/htl/tennis/boundary/TenniscourtResource.java[GraphQL-queries Implimentierung]
 
 link:../backend/graphql-queries/queries.graphql[GraphQL-queries]
 
-link:../backend/src/main/java/at/htl/tennis/control/TenniscourtService.java[Method implementation for queries]
+link:../backend/src/main/java/at/htl/tennis/control/TenniscourtService.java[Method Implementierung für queries]
 
 .Wofür benötigt man GraphQL?
 GraphQL bietet die Möglichkeiten, genau das zu fragen, was man benötigt und nicht mehr.
@@ -36,7 +36,7 @@ link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[Validat
 
 link:../backend/src/main/java/at/htl/tennis/entity/Member.java[ValidationAnnotation]
 
-link:../backend/http-requests/http-requests.http[try validation requests]
+link:../backend/http-requests/http-requests.http[Validierung queries]
 
 .Wofür benötigt man Validierung?
 Validierung bietet die Möglichkeit die Eingabe es Benutzers "einzuschränken".
@@ -53,9 +53,9 @@ Mitglied zumindest der Vorname, Nachname und die E-Mail bekannt ist.
 
 link:../backend/src/main/java/at/htl/tennis/boundary/MemberResource.java[getMemberMethod]
 
-link:../backend/src/main/resources/templates/MemberResource/memberTemplate.html[Html-Page to print member]
+link:../backend/src/main/resources/templates/MemberResource/memberTemplate.html[Html-Page zum Ausgeben eines Mitglieds]
 
-link:../backend/http-requests/http-requests.http[Try last GET to test part of qute]
+link:../backend/http-requests/http-requests.http[Qute query]
 
 .Wofür benötigt man Qute?
 Qute ist eine Templating-Engine, die speziell für die Anforderungen von Quarkus entwickelt wurde.
@@ -74,7 +74,7 @@ link:../backend/src/main/java/at/htl/tennis/control/HelloService.java[GRPCServic
 
 link:../backend/src/main/proto/helloword.proto[Proto]
 
-link:../backend/src/main/resources/application.properties[Add GRPC in application.properties]
+link:../backend/src/main/resources/application.properties[GRPC in application.properties hinzugefügt]
 
 .Wofür benötigt man GRPC?
 gRPC (Google Remote Procedure Call). gRPC-Schnittstelle sind leistungsfähig und auch große Datenmengen
@@ -83,12 +83,30 @@ Der Großteil des Codes kann generiert werden nur die Methoden müssen implement
 
 == Using Security with .properties File
 
-link:../backend/src/main/resources/application.properties[Embedded Realm Configuration and Properties Files Realm Configuration]
+link:../backend/src/main/resources/application.properties[Embedded Realm Configuration und Properties Files Realm Configuration]
 
 link:../backend/src/main/resources/test-roles.properties[test-roles.properties]
 
 link:../backend/src/main/resources/test-users.properties[test-users.properties]
 
-.Wofür benötigt man Securtiy with .properties File
+link:../backend/http-requests/http-requests.http[Requests zum Testen]
+
+link:../backend/src/main/java/at/htl/tennis/boundary/MatchResource.java[Implementierung]
+
+.Wofür benötigt man Security with .properties File
+Security für unsere API. Endpoints können so konfiguriert werden das nur User mit bestimmten Rollen
+darauf zugreifen können.
 
 == Using Security with JPA
+
+link:../backend/http-requests/http-requests.http[Requests zum Testen]
+
+link:../backend/src/main/java/at/htl/tennis/entity/Member.java[@UserDefinition Anwendung]
+
+link:../backend/src/main/java/at/htl/tennis/boundary/MatchPlanResource.java[Anwendung der Rollenvergabe bei EndPoints]
+
+.Wofür benötigt man Security with JPA
+Security für unsere API. Endpoints können so konfiguriert werden das nur User mit bestimmten Rollen
+darauf zugreifen können.
+
+

@@ -14,19 +14,18 @@ import java.util.List;
 
 @ApplicationScoped
 public class MatchPlanRepository implements PanacheRepository<MatchPlan> {
-    @Inject
-    EntityManager em;
 
     @Transactional
     public MatchPlan save(MatchPlan matchPlan) {
         MatchPlan savedMatchPlan = getMatchPlanByMatchPlan(matchPlan);
         if(savedMatchPlan != null)
             return savedMatchPlan;
-        return em.merge(matchPlan);
+        return getEntityManager().merge(matchPlan);
     }
 
     public MatchPlan getMatchPlanByMatchPlan(MatchPlan matchPlan) {
-        TypedQuery<MatchPlan> query = em.createNamedQuery("MatchPlan.findMatchPlanByMatchPlan",MatchPlan.class)
+        TypedQuery<MatchPlan> query = getEntityManager()
+                .createNamedQuery("MatchPlan.getMatchPlanByMatchPlan",MatchPlan.class)
                 .setParameter("MATCH", matchPlan.match)
                 .setParameter("MEMBER", matchPlan.member);
         try {
@@ -38,5 +37,17 @@ public class MatchPlanRepository implements PanacheRepository<MatchPlan> {
 
     public List<MatchPlan> getAllMatchPlans() {
         return this.findAll().stream().toList();
+    }
+
+    public List<MatchPlan> getMatchPlansByMatchId(String matchId) {
+        TypedQuery<MatchPlan> query = getEntityManager()
+                .createNamedQuery("MatchPlan.getMatchPlansByMatchId", MatchPlan.class)
+                .setParameter("MATCHID", Long.parseLong(matchId));
+        try {
+            return query.getResultList();
+        }catch (NoResultException ex){
+            return null;
+        }
+
     }
 }

@@ -4,12 +4,16 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(
-                name = "MatchPlan.findMatchPlanByMatchPlan",
+                name = "MatchPlan.getMatchPlanByMatchPlan",
                 query = "select mp from MatchPlan mp where mp.match = :MATCH and mp.member = :MEMBER"
+        ),
+        @NamedQuery(
+                name = "MatchPlan.getMatchPlansByMatchId",
+                query = "select mp from MatchPlan mp where mp.match.id = :MATCHID"
         )
-)
+})
 @Entity
 @Table(name = "TC_MATCHPLAN")
 public class MatchPlan extends PanacheEntityBase {

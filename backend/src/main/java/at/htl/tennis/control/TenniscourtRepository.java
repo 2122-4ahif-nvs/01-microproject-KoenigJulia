@@ -25,7 +25,7 @@ public class TenniscourtRepository implements PanacheRepository<Tenniscourt> {
     }
 
     public Tenniscourt getTenniscourtByTenniscourt(Tenniscourt court) {
-        TypedQuery<Tenniscourt> query = em.createNamedQuery("Tenniscourt.findTenniscourtByTenniscourt",Tenniscourt.class)
+        TypedQuery<Tenniscourt> query = em.createNamedQuery("Tenniscourt.getTenniscourtByTenniscourt",Tenniscourt.class)
                 .setParameter("COURTID", court.courtId);
         try {
             return query.getSingleResult();

@@ -36,7 +36,7 @@ public class MemberRepository implements PanacheRepository<Member> {
     }
 
     public Member getMemberByMember(Member person) {
-        TypedQuery<Member> query = em.createNamedQuery("Member.findMemberByMember",Member.class)
+        TypedQuery<Member> query = em.createNamedQuery("Member.getMemberByMember",Member.class)
                 .setParameter("MAIL", person.mail)
                 .setParameter("FIRSTNAME", person.firstname)
                 .setParameter("LASTNAME", person.lastname)

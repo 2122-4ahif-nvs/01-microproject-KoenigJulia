@@ -25,7 +25,7 @@ public class MatchRepository implements PanacheRepository<Match> {
     }
 
     public Match getMatchByMatch(Match match) {
-        TypedQuery<Match> query = em.createNamedQuery("Match.findMatchByMatch",Match.class)
+        TypedQuery<Match> query = em.createNamedQuery("Match.getMatchByMatch",Match.class)
                 .setParameter("STARTTIME", match.startTime)
                 .setParameter("ENDTIME", match.endTime)
                 .setParameter("TENNISCOURT", match.tenniscourt);

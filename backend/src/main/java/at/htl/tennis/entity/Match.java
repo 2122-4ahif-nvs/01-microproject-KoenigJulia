@@ -8,7 +8,7 @@ import java.util.List;
 
 @NamedQueries(
         @NamedQuery(
-                name = "Match.findMatchByMatch",
+                name = "Match.getMatchByMatch",
                 query = "select m from Match m where m.startTime = :STARTTIME and m.endTime = :ENDTIME and m.tenniscourt = :TENNISCOURT "
         )
 )

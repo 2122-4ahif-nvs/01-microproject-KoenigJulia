@@ -6,6 +6,8 @@ import io.quarkus.security.identity.SecurityIdentity;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/match")
@@ -18,6 +20,7 @@ public class MatchResource {
 
     @GET
     @Path("getAll")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllMatchPlans() {
         if(!securityIdentity.hasRole("admin") && !securityIdentity.hasRole("user")) {
             return Response.status(403).build();

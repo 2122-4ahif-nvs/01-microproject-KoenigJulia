@@ -8,6 +8,7 @@ import io.quarkus.qute.TemplateInstance;
 import io.quarkus.security.identity.SecurityIdentity;
 
 import javax.inject.Inject;
+import javax.management.relation.Role;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
@@ -37,6 +38,7 @@ public class MemberResource {
 
     @GET
     @Path("getAll")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllMatchPlans() {
         if(!securityIdentity.hasRole("admin") && !securityIdentity.hasRole("emp")) {
             return Response.status(403).build();
@@ -51,14 +53,17 @@ public class MemberResource {
             @QueryParam("fn") @DefaultValue("") String firstName,
             @QueryParam("ln") @DefaultValue("") String lastName,
             @QueryParam("m") @DefaultValue("") String mail,
-            @QueryParam("pn") @DefaultValue("") String phoneNumber
+            @QueryParam("pn") @DefaultValue("") String phoneNumber,
+            @QueryParam("p") @DefaultValue("") String password,
+            @QueryParam("r") @DefaultValue("") String role
     ) {
-        Member member = new Member(firstName, lastName, mail, phoneNumber);
+        Member member = new Member(firstName, lastName, mail, phoneNumber, role);
         return memberTemplate.data("member", memberRepository.getMemberByMember(member));
     }
 
     @Path("/service-method-validation")
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public Result tryMeServiceMethodValidation(Member member, @Context UriInfo uriInfo) {
         try {
             memberRepository.validateMember(member);

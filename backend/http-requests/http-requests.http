@@ -57,3 +57,10 @@ Authorization: Basic julia pw04
 ### Unauthorized
 GET http://localhost:8080/match/getAll
 Authorization: Basic user user
+
+###
+
+GET http://localhost:8080/matchplan/getMatchPlansByMatchId/1
+Authorization: Basic Jakob jakob
+
+
