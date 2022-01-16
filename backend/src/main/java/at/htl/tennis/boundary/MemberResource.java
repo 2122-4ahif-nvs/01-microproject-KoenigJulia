@@ -1,10 +1,11 @@
 package at.htl.tennis.boundary;
 
-import at.htl.tennis.control.MemberService;
+import at.htl.tennis.control.MemberRepository;
 import at.htl.tennis.entity.Member;
 import io.quarkus.qute.Location;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
+import io.quarkus.security.identity.SecurityIdentity;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -14,8 +15,8 @@ import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.awt.print.Book;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,10 +26,23 @@ public class MemberResource {
     Validator validator;
 
     @Inject
-    MemberService memberService;
+    MemberRepository memberRepository;
 
     @Inject @Location("MemberResource/memberTemplate.html")
     Template memberTemplate;
+
+
+    @Inject
+    SecurityIdentity securityIdentity;
+
+    @GET
+    @Path("getAll")
+    public Response getAllMatchPlans() {
+        if(!securityIdentity.hasRole("admin") && !securityIdentity.hasRole("emp")) {
+            return Response.status(403).build();
+        }
+        return Response.ok(memberRepository.getAllMember()).build();
+    }
 
     @Path("/getMember")
     @GET
@@ -40,14 +54,14 @@ public class MemberResource {
             @QueryParam("pn") @DefaultValue("") String phoneNumber
     ) {
         Member member = new Member(firstName, lastName, mail, phoneNumber);
-        return memberTemplate.data("member", memberService.getMemberByMember(member));
+        return memberTemplate.data("member", memberRepository.getMemberByMember(member));
     }
 
     @Path("/service-method-validation")
     @POST
     public Result tryMeServiceMethodValidation(Member member, @Context UriInfo uriInfo) {
         try {
-            memberService.validateMember(member);
+            memberRepository.validateMember(member);
             return new Result("Book is valid! It was validated by service method validation.");
         } catch (ConstraintViolationException e) {
             return new Result(e.getConstraintViolations());

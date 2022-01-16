@@ -1,5 +1,6 @@
-package at.htl.tennis.control;
+package at.htl.tennis.control.service;
 
+import at.htl.tennis.control.TenniscourtRepository;
 import at.htl.tennis.entity.Tenniscourt;
 
 import javax.enterprise.context.ApplicationScoped;

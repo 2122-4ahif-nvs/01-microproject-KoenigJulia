@@ -43,3 +43,17 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/member/getMember?fn=Herbert&ln=Glas&m=herbert@mail.com&pn=089893444444
+
+###
+### Forbidden
+GET http://localhost:8080/member/getAll
+
+###
+### Working
+GET http://localhost:8080/matchplan/getAll
+Authorization: Basic julia pw04
+
+###
+### Unauthorized
+GET http://localhost:8080/match/getAll
+Authorization: Basic user user

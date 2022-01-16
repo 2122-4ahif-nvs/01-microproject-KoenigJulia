@@ -1,15 +1,17 @@
 package at.htl.tennis.boundary;
 
-import at.htl.tennis.control.TenniscourtService;
+import at.htl.tennis.control.service.TenniscourtService;
 import at.htl.tennis.entity.Tenniscourt;
 import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;
 import org.eclipse.microprofile.graphql.Query;
 
+import javax.ws.rs.Path;
 import java.util.List;
 
 @GraphQLApi
+//@Path("/tenniscourt")
 public class TenniscourtResource {
     TenniscourtService tenniscourtService;
 

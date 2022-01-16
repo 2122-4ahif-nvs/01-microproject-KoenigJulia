@@ -29,8 +29,10 @@ public class Match extends PanacheEntityBase {
     @Column(name = "MA_ENDTIME")
     public LocalDateTime endTime;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+/*
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     public List<MatchPlan> matchPlans;
+*/
 
     //region constructor
     public Match(Tenniscourt tenniscourt, LocalDateTime startTime, LocalDateTime endTime) {

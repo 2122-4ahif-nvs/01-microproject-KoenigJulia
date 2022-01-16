@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @ApplicationScoped
 public class MatchPlanRepository implements PanacheRepository<MatchPlan> {
@@ -18,13 +19,13 @@ public class MatchPlanRepository implements PanacheRepository<MatchPlan> {
 
     @Transactional
     public MatchPlan save(MatchPlan matchPlan) {
-        MatchPlan savedMatchPlan = findMatchByMatch(matchPlan);
+        MatchPlan savedMatchPlan = getMatchPlanByMatchPlan(matchPlan);
         if(savedMatchPlan != null)
             return savedMatchPlan;
         return em.merge(matchPlan);
     }
 
-    public MatchPlan findMatchByMatch(MatchPlan matchPlan) {
+    public MatchPlan getMatchPlanByMatchPlan(MatchPlan matchPlan) {
         TypedQuery<MatchPlan> query = em.createNamedQuery("MatchPlan.findMatchPlanByMatchPlan",MatchPlan.class)
                 .setParameter("MATCH", matchPlan.match)
                 .setParameter("MEMBER", matchPlan.member);
@@ -33,5 +34,9 @@ public class MatchPlanRepository implements PanacheRepository<MatchPlan> {
         }catch (NoResultException ex){
             return null;
         }
+    }
+
+    public List<MatchPlan> getAllMatchPlans() {
+        return this.findAll().stream().toList();
     }
 }

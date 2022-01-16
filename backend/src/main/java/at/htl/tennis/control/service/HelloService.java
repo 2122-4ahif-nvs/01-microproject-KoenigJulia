@@ -1,4 +1,4 @@
-package at.htl.tennis.control;
+package at.htl.tennis.control.service;
 
 import io.grpc.stub.StreamObserver;
 import at.htl.tennis.Greeter;

@@ -36,8 +36,10 @@ public class Member extends PanacheEntityBase {
     @Column(name = "ME_PHONENUMBER")
     public String phoneNumber;
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+/*
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     public List<MatchPlan> matchPlans;
+*/
 
 
     //region constructors

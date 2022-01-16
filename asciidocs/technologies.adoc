@@ -90,3 +90,5 @@ link:../backend/src/main/resources/test-roles.properties[test-roles.properties]
 link:../backend/src/main/resources/test-users.properties[test-users.properties]
 
 .Wofür benötigt man Securtiy with .properties File
+
+== Using Security with JPA

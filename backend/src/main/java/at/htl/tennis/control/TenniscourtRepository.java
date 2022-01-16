@@ -18,13 +18,13 @@ public class TenniscourtRepository implements PanacheRepository<Tenniscourt> {
 
     @Transactional
     public Tenniscourt save(Tenniscourt court) {
-        Tenniscourt tenniscourt = findTenniscourtByTenniscourt(court);
+        Tenniscourt tenniscourt = getTenniscourtByTenniscourt(court);
         if(tenniscourt != null)
             return tenniscourt;
         return em.merge(court);
     }
 
-    public Tenniscourt findTenniscourtByTenniscourt(Tenniscourt court) {
+    public Tenniscourt getTenniscourtByTenniscourt(Tenniscourt court) {
         TypedQuery<Tenniscourt> query = em.createNamedQuery("Tenniscourt.findTenniscourtByTenniscourt",Tenniscourt.class)
                 .setParameter("COURTID", court.courtId);
         try {
