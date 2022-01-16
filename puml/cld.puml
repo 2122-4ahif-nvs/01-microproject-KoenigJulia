@@ -1,0 +1,29 @@
+@startuml
+
+class Member{
+    - firstname: String
+    - lastname: String
+    - email: String
+    - phoneNumber: String
+}
+
+class Match{
+    - startTime: LocalDateTime
+    - endTime: LocalDateTime
+    - court: Tenniscourt
+}
+
+class Tenniscourt{
+    - courtId: Integer
+    - isPlayable: boolean
+}
+
+class MatchPlan{
+    -match: Match
+    -member: Member
+}
+
+Match "n" -r-> "1" Tenniscourt
+
+(Match, Member) .. MatchPlan
+@enduml
