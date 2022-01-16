@@ -68,6 +68,25 @@ wenn man den GET-Request in einem Browser ausführt.
 
 == GRPC
 
-.Wofür benötigt man GRPC?
+link:../backend/src/main/java/at/htl/tennis/boundary/HelloResource.java[HelloResource Endpoint]
 
-.Anwendung im Projekt
+link:../backend/src/main/java/at/htl/tennis/control/HelloService.java[GRPCService]
+
+link:../backend/src/main/proto/helloword.proto[Proto]
+
+link:../backend/src/main/resources/application.properties[Add GRPC in application.properties]
+
+.Wofür benötigt man GRPC?
+gRPC (Google Remote Procedure Call). gRPC-Schnittstelle sind leistungsfähig und auch große Datenmengen
+können schnell übertragen werden. Bestehende System können leicht mit gRPC erweitert werden.
+Der Großteil des Codes kann generiert werden nur die Methoden müssen implementiert werden.
+
+== Using Security with .properties File
+
+link:../backend/src/main/resources/application.properties[Embedded Realm Configuration and Properties Files Realm Configuration]
+
+link:../backend/src/main/resources/test-roles.properties[test-roles.properties]
+
+link:../backend/src/main/resources/test-users.properties[test-users.properties]
+
+.Wofür benötigt man Securtiy with .properties File
