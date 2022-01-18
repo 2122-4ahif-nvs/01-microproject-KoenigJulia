@@ -63,4 +63,13 @@ Authorization: Basic user user
 GET http://localhost:8080/matchplan/getMatchPlansByMatchId/1
 Authorization: Basic Jakob jakob
 
+###
+###Forbidden
 
+GET http://localhost:8080/member/getAll
+Authorization: Basic Jakob jakob
+
+###
+
+GET http://localhost:8080/member/getAll
+Authorization: Basic Doris doris

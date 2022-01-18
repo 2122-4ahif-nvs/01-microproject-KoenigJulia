@@ -7,6 +7,7 @@ import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.security.identity.SecurityIdentity;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.management.relation.Role;
 import javax.validation.ConstraintViolation;
@@ -38,6 +39,7 @@ public class MemberResource {
 
     @GET
     @Path("getAll")
+    @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllMatchPlans() {
         if(!securityIdentity.hasRole("admin") && !securityIdentity.hasRole("emp")) {

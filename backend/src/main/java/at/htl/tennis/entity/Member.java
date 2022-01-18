@@ -7,9 +7,12 @@ import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
 
+import javax.annotation.security.RolesAllowed;
 import javax.management.relation.Role;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @NamedQueries(
         @NamedQuery(
@@ -21,7 +24,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @UserDefinition
 @Table(name = "TC_MEMBER")
-public class Member extends PanacheEntityBase{
+public class Member extends PanacheEntityBase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +47,13 @@ public class Member extends PanacheEntityBase{
     public String phoneNumber;
 
     @Column(name = "ME_PASSWORD")
+    @NotBlank(message = "Password may not be blank")
+    @Min(message = "You need 3 characters", value = 3)
     @Password
     public String password;
 
     @Column(name = "ME_ROLE")
+    @NotBlank(message = "Role may not be blank")
     @Roles
     public String role;
 
